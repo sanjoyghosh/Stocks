@@ -44,7 +44,7 @@ public class YahooEarningsPage {
 	    		String symbol = aElements.text();
 	    		Stock stock = findStockBySymbol(symbol);
 	    		if (stock == null) {
-	    			addStock(symbol, name);
+	    			stock = addNewStock(symbol, name);
 	    		}
 	    	}
 	    }
@@ -52,10 +52,10 @@ public class YahooEarningsPage {
     }
     
     
-    private void addStock(String symbol, String name) {
+    private Stock addNewStock(String symbol, String name) {
     	Stock stock = new Stock(symbol, name);
     	em.persist(stock);
-    	System.out.println("PERSISTED: " + stock);
+    	return stock;
     }
     
      
@@ -64,8 +64,7 @@ public class YahooEarningsPage {
 	    	Stock stock = em.createNamedQuery("findStockBySymbol", Stock.class).setParameter("symbol", symbol).getSingleResult();
 	    	return stock;
     	}
-    	catch (NoResultException e) {
-    	}
+    	catch (NoResultException e) {}
     	return null;
     }
 }

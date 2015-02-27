@@ -34,7 +34,10 @@ public class EarningsData implements Serializable {
 	private Float price;
 	
 	@Column
-	private Float priceTarget;
+	private Float yahooPriceTarget;
+
+	@Column
+	private Float marketwatchPriceTarget;
 	
 	@Column
 	private Float price1YearLow;
@@ -50,6 +53,9 @@ public class EarningsData implements Serializable {
 	
 	@Column 
 	private Float yahooAnalystOpinionLastWeek;
+	
+	@Column 
+	private Float marketwatchAnalystOpinion;
 	
 	@Column
 	private Integer yahooNumberAnalysts;
@@ -69,28 +75,58 @@ public class EarningsData implements Serializable {
 	@Column
 	private Integer yahooNumberAnalystsSell;
 
+	@Column
+	private Integer marketwatchNumberAnalysts;
+	
+	@Column
+	private Integer marketwatchNumberAnalystsStrongBuy;
+	
+	@Column
+	private Integer marketwatchNumberAnalystsBuy;
+
+	@Column
+	private Integer marketwatchNumberAnalystsHold;
+
+	@Column
+	private Integer marketwatchNumberAnalystsUnderperform;
+
+	@Column
+	private Integer marketwatchNumberAnalystsSell;
+
 	public EarningsData(int id, int stockId, Date earningsDate, Date today, 
-		float price, float priceTarget, float price1YearLow, float price1YearHigh, int marketCap,
-		float yahooAnalystOpinionThisWeek, float yahooAnalystOpinionLastWeek,
+		float price, float yahooPriceTarget, float marketwatchPriceTarget, 
+		float price1YearLow, float price1YearHigh, int marketCap,
+		float yahooAnalystOpinionThisWeek, float yahooAnalystOpinionLastWeek, float marketwatchAnalystOpinion,
 		int yahooNumberAnalysts, int yahooNumberAnalystsStrongBuy, int yahooNumberAnalystsBuy, 
-		int yahooNumberAnalystsHold, int yahooNumberAnalystsUnderperform, int yahooNumberAnalystsSell) {
+		int yahooNumberAnalystsHold, int yahooNumberAnalystsUnderperform, int yahooNumberAnalystsSell,
+		int marketwatchNumberAnalysts, int marketwatchNumberAnalystsStrongBuy, int marketwatchNumberAnalystsBuy, 
+		int marketwatchNumberAnalystsHold, int marketwatchNumberAnalystsUnderperform, int marketwatchNumberAnalystsSell) {
 		
 		this.id = id;
 		this.stockId = stockId;
 		this.earningsDate = earningsDate;
 		this.today = today;
 		this.price = price;
-		this.priceTarget = priceTarget;
+		this.yahooPriceTarget = yahooPriceTarget;
 		this.price1YearLow = price1YearLow;
 		this.price1YearHigh = price1YearHigh;
 		this.marketCap = marketCap;
 		this.yahooAnalystOpinionThisWeek = yahooAnalystOpinionThisWeek;
 		this.yahooAnalystOpinionLastWeek = yahooAnalystOpinionLastWeek;
+		this.marketwatchAnalystOpinion = marketwatchAnalystOpinion;
 		this.yahooNumberAnalysts = yahooNumberAnalysts;
 		this.yahooNumberAnalystsStrongBuy = yahooNumberAnalystsStrongBuy;
 		this.yahooNumberAnalystsBuy = yahooNumberAnalystsBuy;
 		this.yahooNumberAnalystsHold = yahooNumberAnalystsHold;
 		this.yahooNumberAnalystsUnderperform = yahooNumberAnalystsUnderperform;
 		this.yahooNumberAnalystsSell = yahooNumberAnalystsSell;
+		this.yahooAnalystOpinionThisWeek = yahooAnalystOpinionThisWeek;
+		this.yahooAnalystOpinionLastWeek = yahooAnalystOpinionLastWeek;
+		this.marketwatchNumberAnalysts = marketwatchNumberAnalysts;
+		this.marketwatchNumberAnalystsStrongBuy = marketwatchNumberAnalystsStrongBuy;
+		this.marketwatchNumberAnalystsBuy = marketwatchNumberAnalystsBuy;
+		this.marketwatchNumberAnalystsHold = marketwatchNumberAnalystsHold;
+		this.marketwatchNumberAnalystsUnderperform = marketwatchNumberAnalystsUnderperform;
+		this.marketwatchNumberAnalystsSell = marketwatchNumberAnalystsSell;
 	}
 }
