@@ -15,36 +15,58 @@ CREATE UNIQUE INDEX `symbol_UNIQUE` ON `Stocks`.`Stock` (`symbol` ASC);
 
 
 
-ALTER TABLE `Stocks`.`EarningsData` DROP PRIMARY KEY;
+--<ScriptOptions statementTerminator=";"/>
 
-DROP TABLE `Stocks`.`EarningsData`;
+ALTER TABLE `Stocks`.`AnalystOpinionYahoo` DROP PRIMARY KEY;
 
-CREATE TABLE `Stocks`.`EarningsData` (
+DROP TABLE `Stocks`.`AnalystOpinionYahoo`;
+
+CREATE TABLE `Stocks`.`AnalystOpinionYahoo` (
 	`id` INT NOT NULL,
 	`stockId` INT NOT NULL,
-	`EarningsDate` DATE NOT NULL,
 	`today` DATE NOT NULL,
-	`price` FLOAT NOT NULL,
-	`yahooPriceTarget` FLOAT NOT NULL,
-	`marketwatchPriceTarget` FLOAT NOT NULL,
-	`price1YearLow` FLOAT NOT NULL,
-	`price1YearHigh` FLOAT NOT NULL,
-	`marketCap` INT NOT NULL,
-	`yahooAnalystOpinionThisWeek` FLOAT NOT NULL,
-	`yahooAnalystOpinionLastWeek` FLOAT NOT NULL,
-	`marketwatchAnalystOpinion` FLOAT NOT NULL,
-	`yahooNumberAnalysts` INT NOT NULL,
-	`yahooNumberAnalystsStrongBuy` INT NOT NULL,
-	`yahooNumberAnalystsBuy` INT NOT NULL,
-	`yahooNumberAnalystsHold` INT NOT NULL,
-	`yahooNumberAnalystsUnderperform` INT NOT NULL,
-	`yahooNumberAnalystsSell` INT NOT NULL,
-	`marketwatchNumberAnalysts` INT NOT NULL,
-	`marketwatchNumberAnalystsStrongBuy` INT NOT NULL,
-	`marketwatchNumberAnalystsBuy` INT NOT NULL,
-	`marketwatchNumberAnalystsHold` INT NOT NULL,
-	`marketwatchNumberAnalystsUnderperform` INT NOT NULL,
-	`marketwatchNumberAnalystsSell` INT NOT NULL,
+	`meanRecommendationThisWeek` FLOAT NOT NULL,
+	`meanRecommendationLastWeek` FLOAT NOT NULL,
+	`changeMeanRecommendation` FLOAT NOT NULL,
+	`meanTarget` FLOAT NOT NULL,
+	`medianTarget` FLOAT NOT NULL,
+	`highTarget` FLOAT NOT NULL,
+	`lowTarget` FLOAT NOT NULL,
+	`numberOfBrokers` INT NOT NULL,
+	`strongBuyCurrentMonth` INT NOT NULL,
+	`strongBuyLastMonth` INT NOT NULL,
+	`strongBuyTwoMonthsAgo` INT NOT NULL,
+	`strongBuyThreeMonthsAgo` INT NOT NULL,
+	`buyCurrentMonth` INT NOT NULL,
+	`buyLastMonth` INT NOT NULL,
+	`buyTwoMonthsAgo` INT NOT NULL,
+	`buyThreeMonthsAgo` INT NOT NULL,
+	`holdCurrentMonth` INT NOT NULL,
+	`holdLastMonth` INT NOT NULL,
+	`holdTwoMonthsAgo` INT NOT NULL,
+	`holdThreeMonthsAgo` INT NOT NULL,
+	`underperformCurrentMonth` INT NOT NULL,
+	`underperformLastMonth` INT NOT NULL,
+	`underperformTwoMonthsAgo` INT NOT NULL,
+	`underperformThreeMonthsAgo` INT NOT NULL,
+	`sellCurrentMonth` INT NOT NULL,
+	`sellLastMonth` INT NOT NULL,
+	`sellTwoMonthsAgo` INT NOT NULL,
+	`sellThreeMonthsAgo` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+--<ScriptOptions statementTerminator=";"/>
+
+ALTER TABLE `Stocks`.`EarningsDate` DROP PRIMARY KEY;
+
+DROP TABLE `Stocks`.`EarningsDate`;
+
+CREATE TABLE `Stocks`.`EarningsDate` (
+	`id` INT NOT NULL,
+	`stockId` INT NOT NULL,
+	`earningsDate` DATE NOT NULL,
+	`earningsReleaseTimeAbbrev` VARCHAR(3) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 

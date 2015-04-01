@@ -13,7 +13,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sanjoyghosh.earnings.enums.EarningsReleaseTimeEnum;
 import com.sanjoyghosh.earnings.model.AnalystOpinionYahoo;
+import com.sanjoyghosh.earnings.model.EarningsDate;
 import com.sanjoyghosh.earnings.model.Stock;
 
 public class YahooEarningsPage {
@@ -41,6 +43,7 @@ public class YahooEarningsPage {
 	    	}
 	    	
 	    	Elements aElements = trElement.select("a[href^=http://finance.yahoo.com/q?s]");
+	    	Elements smallElements = trElement.select("small");
 	    	if (!aElements.isEmpty()) {
 	    		String symbol = aElements.text();
 	    		System.out.println(symbol);
@@ -48,8 +51,17 @@ public class YahooEarningsPage {
 	    		if (stock == null) {
 	    			stock = addNewStock(symbol, name);
 	    		}
+	    		
+	    		EarningsDate ed = new EarningsDate();
+	    		ed.setStockId(stock.getId());
+	    		ed.setEarningsDate(date.getTime());
+	    		ed.setEarningsReleaseTimeAbbrev(EarningsReleaseTimeEnum.toEarningsReleaseTimeEnum(smallElements.text()).getAbbreviation());
+	    		em.persist(ed);
+	    		
 	    		AnalystOpinionYahoo aoy = fetchAnalystOpinionYahoo(symbol);
 	    		if (aoy != null) {
+	    			aoy.setStockId(stock.getId());
+	    			aoy.setToday(date.getTime());
 	    			addAnalystOpinionYahoo(aoy);
 	    		}
 	    	}
@@ -62,11 +74,10 @@ public class YahooEarningsPage {
     	em.persist(analystOpinionYahoo);
 	}
 
-// 408-777-3150
     
 	private AnalystOpinionYahoo fetchAnalystOpinionYahoo(String symbol) throws IOException {
 		AnalystOpinionYahoo aoy = AnalystOpinionYahooFetcher.fetchAnalystOpinionYahoo(symbol);
-		return null;
+		return aoy;
 	}
 
 

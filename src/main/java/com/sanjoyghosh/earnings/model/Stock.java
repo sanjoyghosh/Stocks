@@ -38,4 +38,16 @@ public class Stock implements Serializable {
 		return "Stock [id=" + id + ", name=" + name + ", symbol=" + symbol
 				+ "]";
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSymbol() {
+		return symbol;
+	}
 }
