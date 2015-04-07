@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.sanjoyghosh.earnings.model.AnalystOpinionYahoo;
+import com.sanjoyghosh.earnings.db.model.AnalystOpinionYahoo;
 
 public class AnalystOpinionYahooFetcher {
 

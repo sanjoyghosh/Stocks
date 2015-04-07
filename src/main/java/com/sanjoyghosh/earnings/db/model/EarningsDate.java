@@ -1,7 +1,6 @@
-package com.sanjoyghosh.earnings.model;
+package com.sanjoyghosh.earnings.db.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,10 +21,10 @@ public class EarningsDate implements Serializable {
 	private Integer stockId;
 	
 	@Column
-	private Date earningsDate;
+	private Integer earningsDate;
 	
 	@Column
-	private String earningsReleaseTimeAbbrev;
+	private Integer earningsReleaseTimeEnum;
 	
 	
 	public EarningsDate() {}
@@ -46,19 +45,19 @@ public class EarningsDate implements Serializable {
 		this.stockId = stockId;
 	}
 
-	public Date getEarningsDate() {
+	public Integer getEarningsDate() {
 		return earningsDate;
 	}
 
-	public void setEarningsDate(Date earningsDate) {
+	public void setEarningsDate(Integer earningsDate) {
 		this.earningsDate = earningsDate;
 	}
 
-	public String getEarningsReleaseTimeAbbrev() {
-		return earningsReleaseTimeAbbrev;
+	public Integer getEarningsReleaseTimeEnum() {
+		return earningsReleaseTimeEnum;
 	}
 
-	public void setEarningsReleaseTimeAbbrev(String earningsReleaseTimeAbbrev) {
-		this.earningsReleaseTimeAbbrev = earningsReleaseTimeAbbrev;
+	public void setEarningsReleaseTimeEnum(Integer earningsReleaseTimeEnum) {
+		this.earningsReleaseTimeEnum = earningsReleaseTimeEnum;
 	}
 }

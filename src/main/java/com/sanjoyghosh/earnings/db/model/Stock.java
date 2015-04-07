@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings.model;
+package com.sanjoyghosh.earnings.db.model;
 
 import java.io.Serializable;
 

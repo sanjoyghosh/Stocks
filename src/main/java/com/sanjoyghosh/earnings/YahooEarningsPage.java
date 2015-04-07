@@ -13,10 +13,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sanjoyghosh.earnings.db.model.AnalystOpinionYahoo;
+import com.sanjoyghosh.earnings.db.model.EarningsDate;
+import com.sanjoyghosh.earnings.db.model.Stock;
 import com.sanjoyghosh.earnings.enums.EarningsReleaseTimeEnum;
-import com.sanjoyghosh.earnings.model.AnalystOpinionYahoo;
-import com.sanjoyghosh.earnings.model.EarningsDate;
-import com.sanjoyghosh.earnings.model.Stock;
+import com.sanjoyghosh.earnings.util.CalendarUtils;
 
 public class YahooEarningsPage {
 	
@@ -54,10 +55,10 @@ public class YahooEarningsPage {
 	    		
 	    		EarningsDate ed = new EarningsDate();
 	    		ed.setStockId(stock.getId());
-	    		ed.setEarningsDate(date.getTime());
-	    		ed.setEarningsReleaseTimeAbbrev(EarningsReleaseTimeEnum.toEarningsReleaseTimeEnum(smallElements.text()).getAbbreviation());
+	    		ed.setEarningsDate(CalendarUtils.toInt(date));
+	    		ed.setEarningsReleaseTimeEnum(EarningsReleaseTimeEnum.toEarningsReleaseTimeEnum(smallElements.text()).ordinal());
 	    		em.persist(ed);
-	    		
+
 	    		AnalystOpinionYahoo aoy = fetchAnalystOpinionYahoo(symbol);
 	    		if (aoy != null) {
 	    			aoy.setStockId(stock.getId());

@@ -1,6 +1,5 @@
 package com.sanjoyghosh.earnings;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -13,8 +12,9 @@ public class EarningsMain {
 			try {
 				yep.processEarningsFor(calendar);
 			} 
-			catch (IOException e) {
+			catch (Exception e) {
 				e.printStackTrace();
+				System.exit(-1);
 			}
 			calendar.add(Calendar.DATE, 1);
 		}

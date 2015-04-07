@@ -58,15 +58,13 @@ CREATE TABLE `Stocks`.`AnalystOpinionYahoo` (
 
 --<ScriptOptions statementTerminator=";"/>
 
-ALTER TABLE `Stocks`.`EarningsDate` DROP PRIMARY KEY;
-
 DROP TABLE `Stocks`.`EarningsDate`;
 
 CREATE TABLE `Stocks`.`EarningsDate` (
 	`id` INT NOT NULL,
 	`stockId` INT NOT NULL,
-	`earningsDate` DATE NOT NULL,
-	`earningsReleaseTimeAbbrev` VARCHAR(3) NOT NULL,
+	`earningsDate` INT NOT NULL,
+	`earningsReleaseTimeAbbrev` INT NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
