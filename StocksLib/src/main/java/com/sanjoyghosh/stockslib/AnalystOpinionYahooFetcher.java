@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings;
+package com.sanjoyghosh.stockslib;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.sanjoyghosh.earnings.db.model.AnalystOpinionYahoo;
+import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 
 public class AnalystOpinionYahooFetcher {
 

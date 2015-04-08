@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings;
+package com.sanjoyghosh.stockslib;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -13,11 +13,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.sanjoyghosh.earnings.db.model.AnalystOpinionYahoo;
-import com.sanjoyghosh.earnings.db.model.EarningsDate;
-import com.sanjoyghosh.earnings.db.model.Stock;
-import com.sanjoyghosh.earnings.enums.EarningsReleaseTimeEnum;
-import com.sanjoyghosh.earnings.util.CalendarUtils;
+import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
+import com.sanjoyghosh.stockslib.db.model.EarningsDate;
+import com.sanjoyghosh.stockslib.db.model.Stock;
+import com.sanjoyghosh.stockslib.enums.EarningsReleaseTimeEnum;
+import com.sanjoyghosh.stockslib.util.CalendarUtils;
 
 public class YahooEarningsPage {
 	

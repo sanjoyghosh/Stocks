@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings.util;
+package com.sanjoyghosh.stockslib.util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

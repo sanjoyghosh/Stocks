@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings.db.model;
+package com.sanjoyghosh.stockslib.db.model;
 
 import java.io.Serializable;
 

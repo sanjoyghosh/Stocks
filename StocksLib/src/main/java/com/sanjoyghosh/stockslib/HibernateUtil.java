@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings;
+package com.sanjoyghosh.stockslib;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +14,7 @@ public class HibernateUtil {
 			return entityManager;
 		}
 		
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("com.sanjoyghosh.earnings");
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("com.sanjoyghosh.stockslib");
 		entityManager = emFactory.createEntityManager();
 		return entityManager;
 	}

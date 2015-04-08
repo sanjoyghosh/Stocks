@@ -1,4 +1,4 @@
-package com.sanjoyghosh.earnings.enums;
+package com.sanjoyghosh.stockslib.enums;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
