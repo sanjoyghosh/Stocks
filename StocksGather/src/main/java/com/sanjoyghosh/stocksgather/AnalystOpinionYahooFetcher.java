@@ -1,4 +1,4 @@
-package com.sanjoyghosh.stockslib;
+package com.sanjoyghosh.stocksgather;
 
 import java.io.IOException;
 

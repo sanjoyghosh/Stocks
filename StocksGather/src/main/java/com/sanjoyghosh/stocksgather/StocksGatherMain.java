@@ -1,9 +1,14 @@
-package com.sanjoyghosh.stockslib;
+package com.sanjoyghosh.stocksgather;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class EarningsMain {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class StocksGatherMain {
+	
+	private static final Logger logger = LogManager.getLogger(StocksGatherMain.class);
 
 	public static void main(String[] args) {
 		YahooEarningsPage yep = new YahooEarningsPage();
@@ -13,7 +18,7 @@ public class EarningsMain {
 				yep.processEarningsFor(calendar);
 			} 
 			catch (Exception e) {
-				e.printStackTrace();
+				logger.fatal("Exception in main", e);
 				System.exit(-1);
 			}
 			calendar.add(Calendar.DATE, 1);

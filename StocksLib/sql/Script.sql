@@ -24,7 +24,7 @@ DROP TABLE `Stocks`.`AnalystOpinionYahoo`;
 CREATE TABLE `Stocks`.`AnalystOpinionYahoo` (
 	`id` INT NOT NULL,
 	`stockId` INT NOT NULL,
-	`today` DATE NOT NULL,
+	`createdDate` INT NOT NULL,
 	`meanRecommendationThisWeek` FLOAT NOT NULL,
 	`meanRecommendationLastWeek` FLOAT NOT NULL,
 	`changeMeanRecommendation` FLOAT NOT NULL,

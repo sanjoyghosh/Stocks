@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name="findEarningsDateByAll", query="SELECT ed FROM EarningsDate ed WHERE ed.stockId = :stockId AND ed.earningsDate = :earningsDate AND ed.earningsReleaseTimeEnum = :earningsReleaseTimeEnum")
+
 public class EarningsDate implements Serializable {
 
 	private static final long serialVersionUID = 4263519372478222266L;

@@ -1,7 +1,6 @@
 package com.sanjoyghosh.stockslib.db.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name="findStoBySymbol", query="SELECT s FROM Stock s WHERE s.symbol = :symbol")
+@NamedQuery(name="findAnalystOpinionYahooByStockId", query="SELECT aoy FROM AnalystOpinionYahoo aoy WHERE aoy.stockId = :stockId ORDER BY createdDate DESC")
 
 public class AnalystOpinionYahoo implements Serializable {
 
@@ -25,7 +24,7 @@ public class AnalystOpinionYahoo implements Serializable {
 	private Integer stockId;
 		
 	@Column
-	private Date today;
+	private Integer createdDate;
 	
 	@Column
 	private Float meanRecommendationThisWeek;
@@ -121,8 +120,8 @@ public class AnalystOpinionYahoo implements Serializable {
 		this.stockId = stockId;
 	}
 
-	public void setToday(Date today) {
-		this.today = today;
+	public void setCreatedDate(Integer createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public void setMeanRecommendationThisWeek(Float meanRecommendationThisWeek) {
@@ -244,7 +243,7 @@ public class AnalystOpinionYahoo implements Serializable {
 	@Override
 	public String toString() {
 		return "AnalystOpinionYahoo [id=" + id + ", stockId=" + stockId
-				+ ", today=" + today + ", meanRecommendationThisWeek="
+				+ ", createdDate=" + createdDate + ", meanRecommendationThisWeek="
 				+ meanRecommendationThisWeek + ", meanRecommendationLastWeek="
 				+ meanRecommendationLastWeek + ", changeMeanRecommendation="
 				+ changeMeanRecommendation + ", meanTarget=" + meanTarget
@@ -268,5 +267,167 @@ public class AnalystOpinionYahoo implements Serializable {
 				+ ", sellCurrentMonth=" + sellCurrentMonth + ", sellLastMonth="
 				+ sellLastMonth + ", sellTwoMonthsAgo=" + sellTwoMonthsAgo
 				+ ", sellThreeMonthsAgo=" + sellThreeMonthsAgo + "]";
+	}
+
+	public boolean isTheSameAs(AnalystOpinionYahoo aoy) {
+		if (this == aoy)
+			return true;
+		if (aoy == null)
+			return false;
+		if (getClass() != aoy.getClass())
+			return false;
+		if (buyCurrentMonth == null) {
+			if (aoy.buyCurrentMonth != null)
+				return false;
+		} else if (!buyCurrentMonth.equals(aoy.buyCurrentMonth))
+			return false;
+		if (buyLastMonth == null) {
+			if (aoy.buyLastMonth != null)
+				return false;
+		} else if (!buyLastMonth.equals(aoy.buyLastMonth))
+			return false;
+		if (buyThreeMonthsAgo == null) {
+			if (aoy.buyThreeMonthsAgo != null)
+				return false;
+		} else if (!buyThreeMonthsAgo.equals(aoy.buyThreeMonthsAgo))
+			return false;
+		if (buyTwoMonthsAgo == null) {
+			if (aoy.buyTwoMonthsAgo != null)
+				return false;
+		} else if (!buyTwoMonthsAgo.equals(aoy.buyTwoMonthsAgo))
+			return false;
+		if (changeMeanRecommendation == null) {
+			if (aoy.changeMeanRecommendation != null)
+				return false;
+		} else if (!changeMeanRecommendation
+				.equals(aoy.changeMeanRecommendation))
+			return false;
+		if (highTarget == null) {
+			if (aoy.highTarget != null)
+				return false;
+		} else if (!highTarget.equals(aoy.highTarget))
+			return false;
+		if (holdCurrentMonth == null) {
+			if (aoy.holdCurrentMonth != null)
+				return false;
+		} else if (!holdCurrentMonth.equals(aoy.holdCurrentMonth))
+			return false;
+		if (holdLastMonth == null) {
+			if (aoy.holdLastMonth != null)
+				return false;
+		} else if (!holdLastMonth.equals(aoy.holdLastMonth))
+			return false;
+		if (holdThreeMonthsAgo == null) {
+			if (aoy.holdThreeMonthsAgo != null)
+				return false;
+		} else if (!holdThreeMonthsAgo.equals(aoy.holdThreeMonthsAgo))
+			return false;
+		if (holdTwoMonthsAgo == null) {
+			if (aoy.holdTwoMonthsAgo != null)
+				return false;
+		} else if (!holdTwoMonthsAgo.equals(aoy.holdTwoMonthsAgo))
+			return false;
+		if (lowTarget == null) {
+			if (aoy.lowTarget != null)
+				return false;
+		} else if (!lowTarget.equals(aoy.lowTarget))
+			return false;
+		if (meanRecommendationLastWeek == null) {
+			if (aoy.meanRecommendationLastWeek != null)
+				return false;
+		} else if (!meanRecommendationLastWeek
+				.equals(aoy.meanRecommendationLastWeek))
+			return false;
+		if (meanRecommendationThisWeek == null) {
+			if (aoy.meanRecommendationThisWeek != null)
+				return false;
+		} else if (!meanRecommendationThisWeek
+				.equals(aoy.meanRecommendationThisWeek))
+			return false;
+		if (meanTarget == null) {
+			if (aoy.meanTarget != null)
+				return false;
+		} else if (!meanTarget.equals(aoy.meanTarget))
+			return false;
+		if (medianTarget == null) {
+			if (aoy.medianTarget != null)
+				return false;
+		} else if (!medianTarget.equals(aoy.medianTarget))
+			return false;
+		if (numberOfBrokers == null) {
+			if (aoy.numberOfBrokers != null)
+				return false;
+		} else if (!numberOfBrokers.equals(aoy.numberOfBrokers))
+			return false;
+		if (sellCurrentMonth == null) {
+			if (aoy.sellCurrentMonth != null)
+				return false;
+		} else if (!sellCurrentMonth.equals(aoy.sellCurrentMonth))
+			return false;
+		if (sellLastMonth == null) {
+			if (aoy.sellLastMonth != null)
+				return false;
+		} else if (!sellLastMonth.equals(aoy.sellLastMonth))
+			return false;
+		if (sellThreeMonthsAgo == null) {
+			if (aoy.sellThreeMonthsAgo != null)
+				return false;
+		} else if (!sellThreeMonthsAgo.equals(aoy.sellThreeMonthsAgo))
+			return false;
+		if (sellTwoMonthsAgo == null) {
+			if (aoy.sellTwoMonthsAgo != null)
+				return false;
+		} else if (!sellTwoMonthsAgo.equals(aoy.sellTwoMonthsAgo))
+			return false;
+		if (stockId == null) {
+			if (aoy.stockId != null)
+				return false;
+		} else if (!stockId.equals(aoy.stockId))
+			return false;
+		if (strongBuyCurrentMonth == null) {
+			if (aoy.strongBuyCurrentMonth != null)
+				return false;
+		} else if (!strongBuyCurrentMonth.equals(aoy.strongBuyCurrentMonth))
+			return false;
+		if (strongBuyLastMonth == null) {
+			if (aoy.strongBuyLastMonth != null)
+				return false;
+		} else if (!strongBuyLastMonth.equals(aoy.strongBuyLastMonth))
+			return false;
+		if (strongBuyThreeMonthsAgo == null) {
+			if (aoy.strongBuyThreeMonthsAgo != null)
+				return false;
+		} else if (!strongBuyThreeMonthsAgo
+				.equals(aoy.strongBuyThreeMonthsAgo))
+			return false;
+		if (strongBuyTwoMonthsAgo == null) {
+			if (aoy.strongBuyTwoMonthsAgo != null)
+				return false;
+		} else if (!strongBuyTwoMonthsAgo.equals(aoy.strongBuyTwoMonthsAgo))
+			return false;
+		if (underperformCurrentMonth == null) {
+			if (aoy.underperformCurrentMonth != null)
+				return false;
+		} else if (!underperformCurrentMonth
+				.equals(aoy.underperformCurrentMonth))
+			return false;
+		if (underperformLastMonth == null) {
+			if (aoy.underperformLastMonth != null)
+				return false;
+		} else if (!underperformLastMonth.equals(aoy.underperformLastMonth))
+			return false;
+		if (underperformThreeMonthsAgo == null) {
+			if (aoy.underperformThreeMonthsAgo != null)
+				return false;
+		} else if (!underperformThreeMonthsAgo
+				.equals(aoy.underperformThreeMonthsAgo))
+			return false;
+		if (underperformTwoMonthsAgo == null) {
+			if (aoy.underperformTwoMonthsAgo != null)
+				return false;
+		} else if (!underperformTwoMonthsAgo
+				.equals(aoy.underperformTwoMonthsAgo))
+			return false;
+		return true;
 	}
 }
