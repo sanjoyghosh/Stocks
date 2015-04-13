@@ -3,4 +3,32 @@
   <groupId>com.sanjoyghosh.stocksgather</groupId>
   <artifactId>StocksGather</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <name>StocksGather</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+  	<dependency>
+		<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+		<groupId>org.jsoup</groupId>
+		<artifactId>jsoup</artifactId>
+		<version>1.8.1</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>2.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>2.2</version>
+	</dependency>
+
+  </dependencies>
 </project>
