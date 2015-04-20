@@ -11,13 +11,13 @@ public class CalendarUtils {
 		}
 		
 		int dateInt = date.get(Calendar.YEAR) * 10000;
-		dateInt += date.get(Calendar.MONTH) * 100;
+		dateInt += (date.get(Calendar.MONTH) + 1) * 100;
 		dateInt += date.get(Calendar.DAY_OF_MONTH);
 		return dateInt;
 	}
 	
 	public static Calendar toCalendar(int dateInt) {
-		GregorianCalendar calendar = new GregorianCalendar(dateInt / 10000, (dateInt % 10000) / 100, dateInt % 1000000);
+		GregorianCalendar calendar = new GregorianCalendar(dateInt / 10000, ((dateInt % 10000) / 100) - 1, dateInt % 1000000);
 		return calendar;
 	}
 }

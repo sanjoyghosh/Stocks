@@ -5,6 +5,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,13 +22,23 @@ import com.sanjoyghosh.stockslib.util.CalendarUtils;
 
 public class YahooEarningsPage {
 	
+	private static final Logger logger = LogManager.getLogger(YahooEarningsPage.class);
 	private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 	
     public void processEarningsFor(Calendar date) throws IOException {    	
     	String dateString = dateFormat.format(date.getTime());
     	String yepUrl = "http://biz.yahoo.com/research/earncal/" + dateString + ".html";
     	
-		Document doc = Jsoup.connect(yepUrl).get();
+		Document doc = null;
+		for (int i = 0; i < 12; i++) {
+			try {
+				doc = Jsoup.connect(yepUrl).get();
+				break;
+			}
+			catch (HttpStatusException e) {
+				logger.error("Cannot fetch url: " + yepUrl, e);
+			}
+		}
 		StocksLib.transactionBegin();
 		
 	    Elements trElements = doc.select("table[cellpadding=2").select("tr");

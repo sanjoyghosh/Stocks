@@ -68,4 +68,39 @@ CREATE TABLE `Stocks`.`EarningsDate` (
 	PRIMARY KEY (`id`)
 );
 
+USE `Stocks`;
+CREATE 
+     OR REPLACE ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `stocksearningsdate` AS
+    (SELECT 
+        `a`.`symbol` AS `symbol`,
+        `a`.`name` AS `name`,
+        `c`.`meanRecommendationThisWeek` AS `meanRecommendationThisWeek`,
+        `c`.`numberOfBrokers` AS `numberOfBrokers`,        
+        `b`.`earningsDate` AS `earningsDate`,
+        `b`.`earningsReleaseTimeEnum` AS `earningsReleaseTimeEnum`
+    FROM
+        ((`stock` `a`
+        JOIN `earningsdate` `b`)
+        JOIN `analystopinionyahoo` `c`)
+    WHERE
+        ((`a`.`id` = `b`.`stockId`)
+            AND (`a`.`id` = `c`.`stockId`)));
 
+CREATE TABLE `Stocks`.`QuoteYahoo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `stockId` INT NOT NULL,
+  `price` FLOAT NOT NULL,
+  `previousClose` FLOAT NOT NULL,
+  `open` FLOAT NOT NULL,
+  `oneYearTarget` FLOAT NULL,
+  `dayRangeLow` FLOAT NOT NULL,
+  `dayRangeHigh` FLOAT NOT NULL,
+  `fiftyTwoWeekRangeLow` FLOAT NOT NULL,
+  `fiftyTwoWeekRangeHigh` FLOAT NOT NULL,
+  `volume` INT NOT NULL,
+  `threeMonthAverageVolume` INT NOT NULL,
+  `marketCap` BIGINT NOT NULL,
+  PRIMARY KEY (`id`));

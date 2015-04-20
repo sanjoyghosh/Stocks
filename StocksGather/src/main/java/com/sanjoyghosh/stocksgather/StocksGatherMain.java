@@ -13,7 +13,7 @@ public class StocksGatherMain {
 	public static void main(String[] args) {
 		YahooEarningsPage yep = new YahooEarningsPage();
 		Calendar calendar = new GregorianCalendar();
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < 7; i++) {
 			try {
 				yep.processEarningsFor(calendar);
 			} 
