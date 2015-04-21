@@ -4,25 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
-@Entity
 @NamedQuery(name="findEarningsDateByAll", query="SELECT ed FROM EarningsDate ed WHERE ed.stockId = :stockId AND ed.earningsDate = :earningsDate AND ed.earningsReleaseTimeEnum = :earningsReleaseTimeEnum")
 
-public class EarningsDate implements Serializable {
+@Entity
+public class EarningsDate extends AbstractStockBasedObject implements Serializable {
 
 	private static final long serialVersionUID = 4263519372478222266L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Column
-	private Integer stockId;
-	
 	@Column
 	private Integer earningsDate;
 	
@@ -32,21 +22,6 @@ public class EarningsDate implements Serializable {
 	
 	public EarningsDate() {}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getStockId() {
-		return stockId;
-	}
-
-	public void setStockId(Integer stockId) {
-		this.stockId = stockId;
-	}
 
 	public Integer getEarningsDate() {
 		return earningsDate;

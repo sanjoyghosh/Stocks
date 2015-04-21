@@ -4,28 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
-@Entity
 @NamedQuery(name="findAnalystOpinionYahooByStockId", query="SELECT aoy FROM AnalystOpinionYahoo aoy WHERE aoy.stockId = :stockId ORDER BY createdDate DESC")
 
-public class AnalystOpinionYahoo implements Serializable {
+@Entity
+public class AnalystOpinionYahoo extends AbstractStockBasedObject implements Serializable {
 
 	private static final long serialVersionUID = -2882178203938395348L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Column
-	private Integer stockId;
-		
-	@Column
-	private Integer createdDate;
-	
 	@Column
 	private Float meanRecommendationThisWeek;
 
@@ -112,17 +99,6 @@ public class AnalystOpinionYahoo implements Serializable {
 
 	public AnalystOpinionYahoo() {}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public void setStockId(Integer stockId) {
-		this.stockId = stockId;
-	}
-
-	public void setCreatedDate(Integer createdDate) {
-		this.createdDate = createdDate;
-	}
 
 	public void setMeanRecommendationThisWeek(Float meanRecommendationThisWeek) {
 		this.meanRecommendationThisWeek = meanRecommendationThisWeek;
@@ -242,8 +218,8 @@ public class AnalystOpinionYahoo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AnalystOpinionYahoo [id=" + id + ", stockId=" + stockId
-				+ ", createdDate=" + createdDate + ", meanRecommendationThisWeek="
+		return "AnalystOpinionYahoo [id=" + getId() + ", createdDate=" + getCreatedDate()
+				+ ", stockId=" + getStockId() + ", meanRecommendationThisWeek="
 				+ meanRecommendationThisWeek + ", meanRecommendationLastWeek="
 				+ meanRecommendationLastWeek + ", changeMeanRecommendation="
 				+ changeMeanRecommendation + ", meanTarget=" + meanTarget
@@ -379,10 +355,10 @@ public class AnalystOpinionYahoo implements Serializable {
 				return false;
 		} else if (!sellTwoMonthsAgo.equals(aoy.sellTwoMonthsAgo))
 			return false;
-		if (stockId == null) {
-			if (aoy.stockId != null)
+		if (getStockId() == null) {
+			if (aoy.getStockId() != null)
 				return false;
-		} else if (!stockId.equals(aoy.stockId))
+		} else if (!getStockId().equals(aoy.getStockId()))
 			return false;
 		if (strongBuyCurrentMonth == null) {
 			if (aoy.strongBuyCurrentMonth != null)

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +26,8 @@ public class YahooEarningsPage {
 	private static final Logger logger = LogManager.getLogger(YahooEarningsPage.class);
 	private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 	
-    public void processEarningsFor(Calendar date) throws IOException {    	
+    public void processEarningsFor(Calendar date) throws IOException {   
+    	int todayInt = CalendarUtils.toInt(new GregorianCalendar());
     	String dateString = dateFormat.format(date.getTime());
     	String yepUrl = "http://biz.yahoo.com/research/earncal/" + dateString + ".html";
     	
@@ -57,7 +59,10 @@ public class YahooEarningsPage {
 	    		String symbol = aElements.text();
 	    		Stock stock = StocksLib.findStockBySymbol(symbol);
 	    		if (stock == null) {
-	    			stock = new Stock(symbol, name);
+	    			stock = new Stock();
+	    			stock.setCreatedDate(todayInt);
+	    			stock.setName(name);
+	    			stock.setSymbol(symbol);
 	    			StocksLib.addNewStock(stock);
 	    		}
 	    		
@@ -67,7 +72,8 @@ public class YahooEarningsPage {
 	    		EarningsDate ed = StocksLib.findEarningsDateByAll(stockId, earningsDate, earningsReleaseTimeEnum);
 	    		if (ed == null) {
 	    			ed = new EarningsDate();
-		    		ed.setStockId(stockId);
+	    			ed.setCreatedDate(todayInt);
+	    			ed.setStockId(stockId);
 		    		ed.setEarningsDate(earningsDate);
 		    		ed.setEarningsReleaseTimeEnum(earningsReleaseTimeEnum);
 		    		StocksLib.addNewEarningsDate(ed);
