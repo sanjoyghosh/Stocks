@@ -23,6 +23,7 @@ public class StocksGatherMain {
 			}
 			calendar.add(Calendar.DATE, 1);
 		}
+		System.out.println("All Kosher, Good Night.");
 		System.exit(0);
 	}
 }

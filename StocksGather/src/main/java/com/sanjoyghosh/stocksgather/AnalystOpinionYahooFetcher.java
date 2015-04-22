@@ -4,22 +4,20 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 
-public class AnalystOpinionYahooFetcher {
+class AnalystOpinionYahooFetcher {
 
 	private static final Logger logger = LogManager.getLogger(AnalystOpinionYahooFetcher.class);
 	
 	
-	public static AnalystOpinionYahoo fetchAnalystOpinionYahoo(String symbol) throws IOException {
+	static AnalystOpinionYahoo fetchAnalystOpinionYahoo(String symbol) throws IOException {
 		String aoyUrl = "http://finance.yahoo.com/q/ao?s=" + symbol + "+Analyst+Opinion";
-		logger.info("Analyst Opinion Yahoo URL: " + aoyUrl);
-		Document doc = Jsoup.connect(aoyUrl).get();
+		Document doc = JsoupUtils.fetchDocument(aoyUrl);
 		Elements elements = doc.select("td.yfnc_tabledata1");
 
 		if (elements.size() > 0) {
@@ -85,8 +83,6 @@ public class AnalystOpinionYahooFetcher {
 					return null;
 				}
 			}
-
-			logger.info(symbol + "  " + aoy);
 			return aoy;
 		}
 		return null;

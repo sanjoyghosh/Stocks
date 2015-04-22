@@ -6,41 +6,28 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jsoup.HttpStatusException;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.sanjoyghosh.stockslib.StocksLib;
-import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 import com.sanjoyghosh.stockslib.db.model.EarningsDate;
+import com.sanjoyghosh.stockslib.db.model.QuoteYahoo;
 import com.sanjoyghosh.stockslib.db.model.Stock;
 import com.sanjoyghosh.stockslib.enums.EarningsReleaseTimeEnum;
 import com.sanjoyghosh.stockslib.util.CalendarUtils;
 
-public class YahooEarningsPage {
+class YahooEarningsPage {
 	
-	private static final Logger logger = LogManager.getLogger(YahooEarningsPage.class);
+//	private static final Logger logger = LogManager.getLogger(YahooEarningsPage.class);
 	private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 	
-    public void processEarningsFor(Calendar date) throws IOException {   
+    void processEarningsFor(Calendar date) throws IOException {   
     	int todayInt = CalendarUtils.toInt(new GregorianCalendar());
     	String dateString = dateFormat.format(date.getTime());
     	String yepUrl = "http://biz.yahoo.com/research/earncal/" + dateString + ".html";
     	
-		Document doc = null;
-		for (int i = 0; i < 12; i++) {
-			try {
-				doc = Jsoup.connect(yepUrl).get();
-				break;
-			}
-			catch (HttpStatusException e) {
-				logger.error("Cannot fetch url: " + yepUrl, e);
-			}
-		}
+		Document doc = JsoupUtils.fetchDocument(yepUrl);
 		StocksLib.transactionBegin();
 		
 	    Elements trElements = doc.select("table[cellpadding=2").select("tr");
@@ -79,7 +66,8 @@ public class YahooEarningsPage {
 		    		StocksLib.addNewEarningsDate(ed);
 	    		}
 	    		
-	    		AnalystOpinionYahoo aoy = fetchAnalystOpinionYahoo(symbol);
+	    		/*
+	    		AnalystOpinionYahoo aoy = AnalystOpinionYahooFetcher.fetchAnalystOpinionYahoo(symbol);
 	    		if (aoy != null) {
 	    			aoy.setStockId(stockId);
 	    			aoy.setCreatedDate(earningsDate);
@@ -88,14 +76,11 @@ public class YahooEarningsPage {
 		    			StocksLib.addNewAnalystOpinionYahoo(aoy);
 	    			}
 	    		}
+	    		*/
+	    		
+	    		QuoteYahoo qy = QuoteYahooFetcher.fetchQuoteYahoo(symbol);
 	    	}
 	    }
 	    StocksLib.transactionCommit();
     }
-    
-    
-	private AnalystOpinionYahoo fetchAnalystOpinionYahoo(String symbol) throws IOException {
-		AnalystOpinionYahoo aoy = AnalystOpinionYahooFetcher.fetchAnalystOpinionYahoo(symbol);
-		return aoy;
-	}
 }
