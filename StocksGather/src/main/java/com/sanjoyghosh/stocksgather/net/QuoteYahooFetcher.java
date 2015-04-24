@@ -1,15 +1,17 @@
-package com.sanjoyghosh.stocksgather;
+package com.sanjoyghosh.stocksgather.net;
 
 import java.io.IOException;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.sanjoyghosh.stocksgather.util.JsoupUtils;
+import com.sanjoyghosh.stocksgather.util.StringUtils;
 import com.sanjoyghosh.stockslib.db.model.QuoteYahoo;
 
-class QuoteYahooFetcher {
+public class QuoteYahooFetcher {
 
-	static QuoteYahoo fetchQuoteYahoo(String symbol) throws IOException {
+	public static QuoteYahoo fetchQuoteYahoo(String symbol) throws IOException {
 		String aoyUrl = "http://finance.yahoo.com/q?s=" + symbol;
 		Document doc = JsoupUtils.fetchDocument(aoyUrl);
 		

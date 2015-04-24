@@ -1,4 +1,4 @@
-package com.sanjoyghosh.stocksgather;
+package com.sanjoyghosh.stocksgather.util;
 
 import java.io.IOException;
 
@@ -7,13 +7,13 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-class JsoupUtils {
+public class JsoupUtils {
 
 	private static final Logger logger = LogManager.getLogger(JsoupUtils.class);
 	private static final int MAX_RETRIES = 12;
 	
 	
-	static Document fetchDocument(String url) throws IOException {
+	public static Document fetchDocument(String url) throws IOException {
 		Document doc = null;
 		for (int i = 0; i < MAX_RETRIES; i++) {
 			try {

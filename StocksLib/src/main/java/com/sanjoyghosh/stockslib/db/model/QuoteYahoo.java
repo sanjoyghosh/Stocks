@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 
 @Entity
+
+@NamedQuery(name="findQuoteYahooByStockIdCreatedDate", query="SELECT qy FROM QuoteYahoo qy WHERE qy.stockId = :stockId AND qy.createdDate = :createdDate")
+
 public class QuoteYahoo extends AbstractStockBasedObject implements Serializable {
 
 	private static final long serialVersionUID = 7066453402256758170L;

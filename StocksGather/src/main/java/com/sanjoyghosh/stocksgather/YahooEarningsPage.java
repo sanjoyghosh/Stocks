@@ -1,35 +1,26 @@
 package com.sanjoyghosh.stocksgather;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sanjoyghosh.stocksgather.util.JsoupUtils;
 import com.sanjoyghosh.stockslib.StocksLib;
 import com.sanjoyghosh.stockslib.db.model.EarningsDate;
-import com.sanjoyghosh.stockslib.db.model.QuoteYahoo;
 import com.sanjoyghosh.stockslib.db.model.Stock;
 import com.sanjoyghosh.stockslib.enums.EarningsReleaseTimeEnum;
 import com.sanjoyghosh.stockslib.util.CalendarUtils;
 
 class YahooEarningsPage {
 	
-//	private static final Logger logger = LogManager.getLogger(YahooEarningsPage.class);
-	private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-	
-    void processEarningsFor(Calendar date) throws IOException {   
-    	int todayInt = CalendarUtils.toInt(new GregorianCalendar());
-    	String dateString = dateFormat.format(date.getTime());
-    	String yepUrl = "http://biz.yahoo.com/research/earncal/" + dateString + ".html";
+	static void processEarningsFor(Calendar date, int todayInt) throws IOException {   
+		int earningsDateInt = CalendarUtils.toInt(date);
+    	String yepUrl = "http://biz.yahoo.com/research/earncal/" + String.valueOf(earningsDateInt) + ".html";
     	
-		Document doc = JsoupUtils.fetchDocument(yepUrl);
-		StocksLib.transactionBegin();
-		
+		Document doc = JsoupUtils.fetchDocument(yepUrl);		
 	    Elements trElements = doc.select("table[cellpadding=2").select("tr");
 	    for (int i = 0; i < trElements.size(); i++) {
 	    	Element trElement = trElements.get(i);
@@ -54,33 +45,17 @@ class YahooEarningsPage {
 	    		}
 	    		
 	    		int stockId = stock.getId();
-	    		int earningsDate = CalendarUtils.toInt(date);
 	    		int earningsReleaseTimeEnum = EarningsReleaseTimeEnum.toEarningsReleaseTimeEnum(smallElements.text()).ordinal();
-	    		EarningsDate ed = StocksLib.findEarningsDateByAll(stockId, earningsDate, earningsReleaseTimeEnum);
+	    		EarningsDate ed = StocksLib.findEarningsDateByAll(stockId, earningsDateInt, earningsReleaseTimeEnum);
 	    		if (ed == null) {
 	    			ed = new EarningsDate();
-	    			ed.setCreatedDate(todayInt);
 	    			ed.setStockId(stockId);
-		    		ed.setEarningsDate(earningsDate);
+	    			ed.setCreatedDate(todayInt);
+		    		ed.setEarningsDate(earningsDateInt);
 		    		ed.setEarningsReleaseTimeEnum(earningsReleaseTimeEnum);
-		    		StocksLib.addNewEarningsDate(ed);
+		    		StocksLib.addEarningsDate(ed);
 	    		}
-	    		
-	    		/*
-	    		AnalystOpinionYahoo aoy = AnalystOpinionYahooFetcher.fetchAnalystOpinionYahoo(symbol);
-	    		if (aoy != null) {
-	    			aoy.setStockId(stockId);
-	    			aoy.setCreatedDate(earningsDate);
-	    			AnalystOpinionYahoo aoyInDB = StocksLib.findAnalystOpinionYahooByStockIdLatest(stockId);
-	    			if (aoyInDB == null || !aoy.isTheSameAs(aoyInDB)) {
-		    			StocksLib.addNewAnalystOpinionYahoo(aoy);
-	    			}
-	    		}
-	    		*/
-	    		
-	    		QuoteYahoo qy = QuoteYahooFetcher.fetchQuoteYahoo(symbol);
 	    	}
 	    }
-	    StocksLib.transactionCommit();
     }
 }

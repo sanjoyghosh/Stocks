@@ -1,8 +1,8 @@
-package com.sanjoyghosh.stocksgather;
+package com.sanjoyghosh.stocksgather.util;
 
-class StringUtils {
+public class StringUtils {
 	
-	static Long parseLongWithBM(String longStr) {
+	public static Long parseLongWithBM(String longStr) {
 		if (longStr == null) {
 			return null;
 		}
@@ -25,7 +25,7 @@ class StringUtils {
 		return floatVal == null ? null : floatVal.longValue();
 	}
 
-	static Integer parseInteger(String intStr) {
+	public static Integer parseInteger(String intStr) {
 		if (intStr == null) {
 			return null;
 		}
@@ -40,7 +40,7 @@ class StringUtils {
 		}
 	}
 
-	static Float parseFloat(String floatStr) {
+	public static Float parseFloat(String floatStr) {
 		if (floatStr == null) {
 			return null;
 		}
@@ -55,7 +55,7 @@ class StringUtils {
 		}
 	}
 	
-	static Float[] parseFloatRange(String floatRangeStr) {
+	public static Float[] parseFloatRange(String floatRangeStr) {
 		if (floatRangeStr == null) {
 			return null;
 		}

@@ -1,4 +1,4 @@
-package com.sanjoyghosh.stocksgather;
+package com.sanjoyghosh.stocksgather.net;
 
 import java.io.IOException;
 
@@ -8,14 +8,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sanjoyghosh.stocksgather.util.JsoupUtils;
 import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 
-class AnalystOpinionYahooFetcher {
+public class AnalystOpinionYahooFetcher {
 
 	private static final Logger logger = LogManager.getLogger(AnalystOpinionYahooFetcher.class);
 	
 	
-	static AnalystOpinionYahoo fetchAnalystOpinionYahoo(String symbol) throws IOException {
+	public static AnalystOpinionYahoo fetchAnalystOpinionYahoo(String symbol) throws IOException {
 		String aoyUrl = "http://finance.yahoo.com/q/ao?s=" + symbol + "+Analyst+Opinion";
 		Document doc = JsoupUtils.fetchDocument(aoyUrl);
 		Elements elements = doc.select("td.yfnc_tabledata1");

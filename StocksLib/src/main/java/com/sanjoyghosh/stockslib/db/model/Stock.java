@@ -4,11 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-@NamedQuery(name="findStockBySymbol", query="SELECT s FROM Stock s WHERE s.symbol = :symbol")
-
 @Entity
+
+@NamedQueries({
+		@NamedQuery(name="findAllStocks", query="SELECT s FROM Stock s"),
+		@NamedQuery(name="findStockBySymbol", query="SELECT s FROM Stock s WHERE s.symbol = :symbol"),
+})
+
 public class Stock extends AbstractDBObject implements Serializable {
 
 	private static final long serialVersionUID = 105074516845026983L;

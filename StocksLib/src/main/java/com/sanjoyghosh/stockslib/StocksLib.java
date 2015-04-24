@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 
 import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 import com.sanjoyghosh.stockslib.db.model.EarningsDate;
+import com.sanjoyghosh.stockslib.db.model.QuoteYahoo;
 import com.sanjoyghosh.stockslib.db.model.Stock;
 
 public class StocksLib {
@@ -24,6 +25,16 @@ public class StocksLib {
 		entityManager.getTransaction().commit();
 	}
 	
+	
+	public static List<Stock> findAllStocks() {
+    	try {
+	    	List<Stock> stocks = entityManager.createNamedQuery("findAllStocks", Stock.class).getResultList();
+	    	return stocks;
+    	}
+    	catch (NoResultException e) {}
+    	return null;
+	}
+
 	
 	public static Stock findStockBySymbol(String symbol) {
     	try {
@@ -55,23 +66,56 @@ public class StocksLib {
 	}
 
 
-	public static EarningsDate addNewEarningsDate(EarningsDate earningsDate) {
+	public static EarningsDate addEarningsDate(EarningsDate earningsDate) {
 		entityManager.persist(earningsDate);
 		return earningsDate;
 	}
 
 
-	public static AnalystOpinionYahoo addNewAnalystOpinionYahoo(AnalystOpinionYahoo aoy) {
+	public static AnalystOpinionYahoo addAnalystOpinionYahoo(AnalystOpinionYahoo aoy) {
 		entityManager.persist(aoy);
 		return aoy;
 	}
 
 
-	public static AnalystOpinionYahoo findAnalystOpinionYahooByStockIdLatest(int stockId) {
-		List<AnalystOpinionYahoo> aoyList = entityManager.createNamedQuery("findAnalystOpinionYahooByStockId", AnalystOpinionYahoo.class).setParameter("stockId", stockId).getResultList();
-		if (aoyList == null || aoyList.size() == 0) {
-			return null;
+	public static void updateAnalystOpinionYahoo(AnalystOpinionYahoo aoy) {
+		entityManager.merge(aoy);
+	}
+
+
+	public static QuoteYahoo addQuoteYahoo(QuoteYahoo qy) {
+		entityManager.persist(qy);
+		return qy;
+	}
+
+
+	public static void updateQuoteYahoo(QuoteYahoo qy) {
+		entityManager.merge(qy);
+	}
+
+	
+	public static AnalystOpinionYahoo findAnalystOpinionYahooByStockIdCreatedDate(int stockId, int createdDateInt) {
+		try {
+			AnalystOpinionYahoo aoy = entityManager.createNamedQuery("findAnalystOpinionYahooByStockIdCreatedDate", AnalystOpinionYahoo.class)
+				.setParameter("stockId", stockId)
+				.setParameter("createdDate", createdDateInt)
+				.getSingleResult();
+			return aoy;
 		}
-		return aoyList.get(0);
+		catch (NoResultException e) {}
+		return null;
+	}
+
+
+	public static QuoteYahoo findQuoteYahooByStockIdCreatedDate(int stockId, int createdDateInt) {
+		try {
+			QuoteYahoo qy = entityManager.createNamedQuery("findQuoteYahooByStockIdCreatedDate", QuoteYahoo.class)
+				.setParameter("stockId", stockId)
+				.setParameter("createdDate", createdDateInt)
+				.getSingleResult();
+			return qy;
+		}
+		catch (NoResultException e) {}
+		return null;
 	}
 }
