@@ -10,9 +10,8 @@
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
 	</application>
 
-	<!-- managed beans of the simple hello world app -->
 	<managed-bean>
-		<managed-bean-name>helloWorldBacking</managed-bean-name>
+		<managed-bean-name>earningsList</managed-bean-name>
 		<managed-bean-class>
 			com.sanjoyghosh.stocksscatter.EarningsList
 		</managed-bean-class>

@@ -10,14 +10,20 @@
 <ui:composition template="/template.xhtml">
 
 	<ui:define name="body">
-		<h:form id="form">
-			<h:panelGrid id="grid" columns="2">
-				<h:outputText id="output1" value="Please enter your name" />
-				<h:inputText id="input1" value="#{helloWorldBacking.name}" required="true" />
-				<h:commandButton id="button1" value="press me" action="#{helloWorldBacking.send}" />
-				<h:message id="message1" for="input1" />
-			</h:panelGrid>
-		</h:form>
+		<h:dataTable value="#{earningsList.earningsList}" var="earnings">
+		    <h:column>
+		        #{earnings.symbolEarningsDate.symbol}
+		    </h:column>
+		    <h:column>
+		        #{earnings.name}
+		    </h:column>
+		    <h:column>
+		        #{earnings.symbolEarningsDate.earningsDate}
+		    </h:column>
+		    <h:column>
+		        #{earnings.earningsReleaseTimeEnum}
+		    </h:column>
+		</h:dataTable>	
 	</ui:define>
 </ui:composition>
 </body>
