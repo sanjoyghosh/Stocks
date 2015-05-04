@@ -9,6 +9,7 @@ import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 import com.sanjoyghosh.stockslib.db.model.EarningsDate;
 import com.sanjoyghosh.stockslib.db.model.QuoteYahoo;
 import com.sanjoyghosh.stockslib.db.model.Stock;
+import com.sanjoyghosh.stockslib.db.model.StocksEarningsDate;
 
 public class StocksLib {
 	
@@ -114,6 +115,18 @@ public class StocksLib {
 				.setParameter("createdDate", createdDateInt)
 				.getSingleResult();
 			return qy;
+		}
+		catch (NoResultException e) {}
+		return null;
+	}
+	
+	
+	public static List<StocksEarningsDate> findStocksEarningsDateListByEarningsDate(int earningsDate) {
+		try {
+			List<StocksEarningsDate> stocksEarningsDateList = entityManager.createNamedQuery("findStocksEarningsDateListByEarningsDate", StocksEarningsDate.class)
+				.setParameter("earningsDate", earningsDate)
+				.getResultList();
+			return stocksEarningsDateList;
 		}
 		catch (NoResultException e) {}
 		return null;

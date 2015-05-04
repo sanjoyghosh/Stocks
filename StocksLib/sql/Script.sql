@@ -75,7 +75,7 @@ CREATE
      OR REPLACE ALGORITHM = UNDEFINED 
     DEFINER = `root`@`localhost` 
     SQL SECURITY DEFINER
-VIEW `stocksearningsdate` AS
+VIEW `StocksEarningsDate` AS
     (SELECT 
         `a`.`symbol` AS `symbol`,
         `a`.`name` AS `name`,

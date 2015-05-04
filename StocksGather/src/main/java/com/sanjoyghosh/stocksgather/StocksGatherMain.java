@@ -13,6 +13,7 @@ import com.sanjoyghosh.stockslib.StocksLib;
 import com.sanjoyghosh.stockslib.db.model.AnalystOpinionYahoo;
 import com.sanjoyghosh.stockslib.db.model.QuoteYahoo;
 import com.sanjoyghosh.stockslib.db.model.Stock;
+import com.sanjoyghosh.stockslib.db.model.StocksEarningsDate;
 import com.sanjoyghosh.stockslib.util.CalendarUtils;
 
 public class StocksGatherMain {
