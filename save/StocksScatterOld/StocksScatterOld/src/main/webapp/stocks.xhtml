@@ -3,14 +3,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
+	
 <head>
-<title>Hello World</title>
+	<title>Hello World</title>
 </head>
+
 <body>
 <ui:composition template="/template.xhtml">
 
 	<ui:define name="body">
-		<h:dataTable value="#{earningsList.earningsList}" var="earnings">
+		<h:dataTable value="#{earningsList.earningsList}" var="earnings" styleClass="stocks-table" headerClass="stocks-table-header" rowClasses="stocks-table-odd-row,stocks-table-even-row">
 		    <h:column>
 		        #{earnings.symbolEarningsDate.symbol}
 		    </h:column>

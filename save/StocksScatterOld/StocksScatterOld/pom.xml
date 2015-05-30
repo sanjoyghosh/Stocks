@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sanjoyghosh.stocksscatter</groupId>
+	<artifactId>StocksScatter</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>A custom project using myfaces</name>
+	<url>http://www.myorganization.org</url>
+
+	<build>
+		<finalName>StocksScatter</finalName>
+	</build>
+
+	<!-- Profile to run jetty, so the tomcat jars are included in the bundle. 
+		They are not included by default -->
+	<profiles>
+		<profile>
+			<id>jettyConfig</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>maven-jetty-plugin</artifactId>
+						<configuration>
+							<scanIntervalSeconds>10</scanIntervalSeconds>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<dependencies>
+				<dependency>
+					<groupId>tomcat</groupId>
+					<artifactId>jasper-compiler</artifactId>
+					<version>5.5.9</version>
+					<scope>compile</scope>
+				</dependency>
+				<dependency>
+					<groupId>tomcat</groupId>
+					<artifactId>jasper-runtime</artifactId>
+					<version>5.5.9</version>
+					<scope>compile</scope>
+				</dependency>
+				<dependency>
+					<groupId>tomcat</groupId>
+					<artifactId>jasper-compiler-jdt</artifactId>
+					<version>5.5.9</version>
+					<scope>compile</scope>
+				</dependency>
+
+			</dependencies>
+
+			<pluginRepositories>
+				<!-- Repository to get the jetty plugin -->
+				<pluginRepository>
+					<id>mortbay-repo</id>
+					<name>mortbay-repo</name>
+					<url>http://www.mortbay.org/maven2/snapshot</url>
+				</pluginRepository>
+			</pluginRepositories>
+
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>apache-maven-snapshots</id>
+			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/1</url>
+			<layout>legacy</layout>
+		</repository>
+	</repositories>
+
+	<!-- Project dependencies -->
+	<dependencies>
+<dependency>
+	<groupId>org.apache.myfaces.core</groupId>
+	<artifactId>myfaces-api</artifactId>
+	<version>2.2.8</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.myfaces.core</groupId>
+	<artifactId>myfaces-impl</artifactId>
+	<version>2.2.8</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.facelets</groupId>
+	<artifactId>jsf-facelets</artifactId>
+	<version>1.1.14</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.myfaces.core</groupId>
+	<artifactId>myfaces-impl</artifactId>
+	<version>2.2.8</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.myfaces.tomahawk</groupId>
+	<artifactId>tomahawk21</artifactId>
+	<version>1.1.14</version>
+</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+
+	</dependencies>
+</project>
