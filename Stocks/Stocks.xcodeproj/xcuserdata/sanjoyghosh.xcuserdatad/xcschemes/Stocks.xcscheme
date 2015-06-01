@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9BAFDDE21B19F45700DEF28B"
-               BuildableName = "StocksScatterSwift.app"
-               BlueprintName = "StocksScatterSwift"
-               ReferencedContainer = "container:StocksScatterSwift.xcodeproj">
+               BlueprintIdentifier = "9BAFDE0D1B1B671900DEF28B"
+               BuildableName = "Stocks.app"
+               BlueprintName = "Stocks"
+               ReferencedContainer = "container:Stocks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9BAFDDF41B19F45800DEF28B"
-               BuildableName = "StocksScatterSwiftTests.xctest"
-               BlueprintName = "StocksScatterSwiftTests"
-               ReferencedContainer = "container:StocksScatterSwift.xcodeproj">
+               BlueprintIdentifier = "9BAFDE241B1B671900DEF28B"
+               BuildableName = "StocksTests.xctest"
+               BlueprintName = "StocksTests"
+               ReferencedContainer = "container:Stocks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9BAFDDF41B19F45800DEF28B"
-               BuildableName = "StocksScatterSwiftTests.xctest"
-               BlueprintName = "StocksScatterSwiftTests"
-               ReferencedContainer = "container:StocksScatterSwift.xcodeproj">
+               BlueprintIdentifier = "9BAFDE241B1B671900DEF28B"
+               BuildableName = "StocksTests.xctest"
+               BlueprintName = "StocksTests"
+               ReferencedContainer = "container:Stocks.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9BAFDDE21B19F45700DEF28B"
-            BuildableName = "StocksScatterSwift.app"
-            BlueprintName = "StocksScatterSwift"
-            ReferencedContainer = "container:StocksScatterSwift.xcodeproj">
+            BlueprintIdentifier = "9BAFDE0D1B1B671900DEF28B"
+            BuildableName = "Stocks.app"
+            BlueprintName = "Stocks"
+            ReferencedContainer = "container:Stocks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,10 +76,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9BAFDDE21B19F45700DEF28B"
-            BuildableName = "StocksScatterSwift.app"
-            BlueprintName = "StocksScatterSwift"
-            ReferencedContainer = "container:StocksScatterSwift.xcodeproj">
+            BlueprintIdentifier = "9BAFDE0D1B1B671900DEF28B"
+            BuildableName = "Stocks.app"
+            BlueprintName = "Stocks"
+            ReferencedContainer = "container:Stocks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,10 +95,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9BAFDDE21B19F45700DEF28B"
-            BuildableName = "StocksScatterSwift.app"
-            BlueprintName = "StocksScatterSwift"
-            ReferencedContainer = "container:StocksScatterSwift.xcodeproj">
+            BlueprintIdentifier = "9BAFDE0D1B1B671900DEF28B"
+            BuildableName = "Stocks.app"
+            BlueprintName = "Stocks"
+            ReferencedContainer = "container:Stocks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
