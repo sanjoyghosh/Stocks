@@ -44,6 +44,10 @@ public class StringUtils {
 		if (floatStr == null) {
 			return null;
 		}
+		floatStr = floatStr.trim();
+		if (floatStr.equals("N/A")) {
+			return null;
+		}
 		
 		floatStr = floatStr.replaceAll(",", "");
 		try {
@@ -51,6 +55,7 @@ public class StringUtils {
 			return flt;
 		}
 		catch (NumberFormatException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

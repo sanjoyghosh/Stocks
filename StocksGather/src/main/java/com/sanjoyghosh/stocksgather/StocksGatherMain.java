@@ -76,6 +76,8 @@ public class StocksGatherMain {
 		}
 		
 	    StocksLib.transactionCommit();
+	    
+	    FactSetEarningsEmail.processFactSetEarningsEmail();
 		System.out.println("All Kosher, Good Night.");
 		System.exit(0);
 	}

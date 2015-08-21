@@ -16,7 +16,18 @@ public class QuoteYahooFetcher {
 		Document doc = JsoupUtils.fetchDocument(aoyUrl);
 		
 		Elements elements = doc.select("span.time_rtq_ticker");
-		float price = StringUtils.parseFloat(elements.text());
+		if (elements == null || elements.text() == null || elements.text().length() == 0) {
+			System.err.println("No ticker for url: " + aoyUrl);
+			return null;
+		}
+
+		float price = 0.0F;
+		try {price = StringUtils.parseFloat(elements.text());}
+		catch (Exception e) {
+			System.err.println("EXCEPTION EXCEPTION: " + aoyUrl + "  $$" + elements.text() + "**"); 
+			e.printStackTrace();
+			System.exit(-1);
+		}
 		System.out.println(symbol + ": " + price);
 		
 		elements = doc.select("td.yfnc_tabledata1");
