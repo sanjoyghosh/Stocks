@@ -1,13 +1,13 @@
-CREATE TABLE `Stocks`.`Stock` (
+CREATE TABLE `Earnings`.`Stock` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`createdDate` INT NOT NULL,
 	`name` VARCHAR(128) NOT NULL,
 	`symbol` VARCHAR(48) NOT NULL,
 	PRIMARY KEY (`id`)
 );
-CREATE UNIQUE INDEX `symbol_UNIQUE` ON `Stocks`.`Stock` (`symbol` ASC);
+CREATE UNIQUE INDEX `symbol_UNIQUE` ON `Earnings`.`Stock` (`symbol` ASC);
 
-CREATE TABLE `Stocks`.`AnalystOpinionYahoo` (
+CREATE TABLE `Earnings`.`AnalystOpinionYahoo` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`createdDate` INT NOT NULL,
 	`stockId` INT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `Stocks`.`AnalystOpinionYahoo` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Stocks`.`EarningsDate` (
+CREATE TABLE `Earnings`.`EarningsDate` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`createdDate` INT NOT NULL,	
 	`stockId` INT NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `Stocks`.`EarningsDate` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Stocks`.`QuoteYahoo` (
+CREATE TABLE `Earnings`.`QuoteYahoo` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`createdDate` INT NOT NULL,	
 	`stockId` INT NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `Stocks`.`QuoteYahoo` (
 );
 
 
-USE `Stocks`;
+USE `Earnings`;
 CREATE 
      OR REPLACE ALGORITHM = UNDEFINED 
     DEFINER = `root`@`localhost` 
